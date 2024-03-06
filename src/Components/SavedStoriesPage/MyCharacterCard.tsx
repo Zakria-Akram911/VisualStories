@@ -29,11 +29,11 @@ const MyCharacterCard: React.FC<myCharcterCard> = ({
         }}
       >
         <Typography
-          fontSize="24px"
+          fontSize={isMobile? "20px" : "24px"}
           color="#452C0E"
           sx={{
             background: "rgba(239, 206, 141, 0.88)",
-            p: "5px 40px",
+            p: "5px 20px",
             borderRadius: "24px",
             textAlign: "center",
           }}

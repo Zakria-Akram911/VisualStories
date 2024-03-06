@@ -68,6 +68,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         width: "100ch",
       },
     },
+    "@media (max-width: 900px)": {
+      padding: "10px 40px", 
+    },
   },
 }));
 
@@ -190,10 +193,10 @@ const SavedStoriesPage = () => {
         >
           <Box
             sx={{
-              // minWidth: isMobile ? "90%" : "80%",
+              minWidth: isMobile ? "90%" : "75%",
               maxWidth: "75%",
               position: "relative",
-              m: isMobile ? "70px 0px" : mediumScreen ? "30px 0px" : "70px 0px",
+              m: isMobile ? "50px 0px" : mediumScreen ? "30px 0px" : "70px 0px",
             }}
           >
             <Box
@@ -245,12 +248,12 @@ const SavedStoriesPage = () => {
                       "var(--button-gold, linear-gradient(179deg, #E0B65D 25.23%, #F0D191 95.58%, rgba(255, 255, 255, 0.00) 183.3%))",
                     border: "3px solid #A67334",
                     color: "#47371F",
-                    padding: isMobile ? "8px 30px" : "6px 40px",
+                    padding: isMobile ? "10px 20px" : "6px 40px",
                     position: "absolute",
                     right: "0",
                     top: "0",
                     borderRadius: "9px",
-                    fontSize: "20px",
+                    fontSize: isMobile ? "12px" : "20px",
                   }}
                 >
                   search
@@ -261,7 +264,7 @@ const SavedStoriesPage = () => {
                 sx={{
                   maxWidth: isMobile ? "90%" : "60%",
                   margin: isMobile
-                    ? "40px auto 0px"
+                    ? "0px auto 0px"
                     : mediumScreen
                     ? "30px auto 0px"
                     : "60px auto 0px",
@@ -271,7 +274,7 @@ const SavedStoriesPage = () => {
                   container
                   justifyContent="center"
                   columnGap={isMobile ? 1 : 3}
-                  m="30px 0px"
+                  m={isMobile? "20px 0px":"30px 0px"}
                 >
                   <Grid item>
                     <Button
@@ -320,7 +323,7 @@ const SavedStoriesPage = () => {
                 sx={{
                   maxWidth: "80%",
                   m: isMobile
-                    ? "50px auto 0px"
+                    ? "30px auto 0px"
                     : mediumScreen
                     ? "30px auto 0px"
                     : "50px auto 0px",

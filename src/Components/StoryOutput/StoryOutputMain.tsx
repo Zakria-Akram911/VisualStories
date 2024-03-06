@@ -254,7 +254,7 @@ const StoryOutputMain = (props: any) => {
             mobileScrollSupport={true}
             usePortrait={true}
             flippingTime={isMobile ? 1500 : 1000}
-            disableFlipByClick={isMobile ? true :false}
+            disableFlipByClick={isMobile ? true : false}
             useMouseEvents={true}
           >
             {pages.map((item: IPage) => (

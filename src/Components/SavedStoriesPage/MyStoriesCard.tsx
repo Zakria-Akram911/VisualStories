@@ -31,7 +31,7 @@ const MyStoriesCard: React.FC<MyStoriesCard> = ({
         }}
       >
         <Typography
-          fontSize="24px"
+          fontSize={isMobile ? "20px" : "24px"}
           color="#452C0E"
           sx={{
             background: "rgba(239, 206, 141, 0.88)",
@@ -44,7 +44,7 @@ const MyStoriesCard: React.FC<MyStoriesCard> = ({
         </Typography>
       </Box>
       <Box className="my-stories-short-desc" m="20px 0px">
-        <Typography color="#452C0E" fontSize="16px">
+        <Typography color="#452C0E" fontSize={isMobile ? "14px" : "16px"}>
           {shortDesc}
         </Typography>
       </Box>
