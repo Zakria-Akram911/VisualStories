@@ -10,7 +10,7 @@ import CustomizeButton from "../CustomizeButton";
 
 const CreateStoryMain = () => {
   const isMobile = useMediaQuery("(max-width: 900px)");
-  const isMedium = useMediaQuery("(min-width: 901px) and (max-width: 1501px)");
+  const mediumScreen = useMediaQuery("(min-width: 901px) and (max-width: 1501px)");
   const [isStorylineActive, setIsStorylineActive] =
     React.useState<boolean>(true);
   const [formSubmitted, setFormSubmitted] = React.useState<boolean>(false);
@@ -45,7 +45,7 @@ const CreateStoryMain = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           borderRadius: "24px",
-          padding: isMobile ? "40px 20px" : "60px 150px",
+          padding: isMobile ? "40px 20px" : mediumScreen ? "40px 100px" : "60px 150px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -56,8 +56,8 @@ const CreateStoryMain = () => {
           <Typography
             color="#6E4500"
             sx={{
-              // lineHeight: isMobile ? "50px" : isMedium ? "70px" : "80px",
-              fontSize: isMobile ? "20px" : isMedium ? "34px" : "40px",
+              // lineHeight: isMobile ? "50px" : mediumScreen ? "70px" : "80px",
+              fontSize: isMobile ? "20px" : mediumScreen ? "34px" : "40px",
             }}
           >
             The next step?
@@ -65,8 +65,8 @@ const CreateStoryMain = () => {
           <Typography
             color="#6E4500"
             sx={{
-              // lineHeight: isMobile ? "50px" : isMedium ? "70px" : "80px",
-              fontSize: isMobile ? "18px" : isMedium ? "34px" : "40px",
+              // lineHeight: isMobile ? "50px" : mediumScreen ? "70px" : "80px",
+              fontSize: isMobile ? "18px" : mediumScreen ? "34px" : "40px",
               WebkitTextStroke: "0.25px #6E4500",
             }}
           >
@@ -75,8 +75,8 @@ const CreateStoryMain = () => {
           <Typography
             color="#6E4500"
             sx={{
-              // lineHeight: isMobile ? "50px" : isMedium ? "70px" : "80px",
-              fontSize: isMobile ? "14px" : isMedium ? "18px" : "20px",
+              // lineHeight: isMobile ? "50px" : mediumScreen ? "70px" : "80px",
+              fontSize: isMobile ? "14px" : mediumScreen ? "18px" : "20px",
             }}
           >
             Fill the following according to your preference
@@ -89,7 +89,7 @@ const CreateStoryMain = () => {
           sx={{
             display: "flex",
             gap: "20px",
-            m: "40px 0px",
+            m: isMobile ? "20px 0px" : mediumScreen ? "20px 0px" : "40px 0px",
           }}
         >
           <Box
@@ -100,7 +100,7 @@ const CreateStoryMain = () => {
               backgroundColor: isStorylineActive
                 ? "rgba(40, 40, 40, 0.29)"
                 : "",
-              p: isMobile ? "10px" : "30px 60px",
+              p: isMobile ? "10px" : mediumScreen ? "30px 40px" : "30px 60px",
               borderRadius: "24px",
             }}
             onClick={onStorylineClickHandler}
@@ -109,14 +109,14 @@ const CreateStoryMain = () => {
               component="img"
               src={storylineImage}
               sx={{
-                width: isMobile ? "100px" : "auto",
+                width: isMobile ? "100px" : mediumScreen ? "200px" : "auto",
               }}
             />
             <Typography
               sx={{
                 textTransform: "uppercase",
                 textAlign: "center",
-                fontSize: isMobile ? "20px" : isMedium ? "28px" : "32px",
+                fontSize: isMobile ? "20px" : mediumScreen ? "24px" : "32px",
                 color: isStorylineActive ? "white" : "#80521A",
                 WebkitTextStroke: isStorylineActive ? "0.5px white" : "",
               }}
@@ -132,7 +132,7 @@ const CreateStoryMain = () => {
               backgroundColor: !isStorylineActive
                 ? "rgba(40, 40, 40, 0.29)"
                 : "",
-              p: isMobile ? "10px" : "30px 60px",
+              p: isMobile ? "10px" : mediumScreen ? "20px 30px" : "30px 60px",
               borderRadius: "24px",
             }}
             onClick={onMainCharacterClickHandler}
@@ -141,14 +141,14 @@ const CreateStoryMain = () => {
               component="img"
               src={mainCharacterImage}
               sx={{
-                width: isMobile ? "100px" : "auto",
+                width: isMobile ? "100px" : mediumScreen ? "200px" : "auto",
               }}
             />
             <Typography
               sx={{
                 textTransform: "uppercase",
                 textAlign: "center",
-                fontSize: isMobile ? "20px" : isMedium ? "28px" : "32px",
+                fontSize: isMobile ? "20px" : mediumScreen ? "24px" : "32px",
                 color: !isStorylineActive ? "white" : "#80521A",
                 WebkitTextStroke: !isStorylineActive ? "0.5px white" : "",
               }}

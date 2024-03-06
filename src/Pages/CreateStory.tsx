@@ -16,7 +16,7 @@ const CreateStory = () => {
     // const [formSubmitted, setFormSubmitted] = React.useState<boolean>(false)
     // const navigate = useNavigate()
     const isMobile = useMediaQuery("(max-width: 900px)");
-    // const isMedium = useMediaQuery("(min-width: 901px) and (max-width: 1501px)")
+    const mediumScreen = useMediaQuery("(min-width: 901px) and (max-width: 1501px)")
     // const handleClick = (e: any)=>{
     //     setFormSubmitted(true)
     //     console.log(formSubmitted)
@@ -55,7 +55,8 @@ const CreateStory = () => {
                         position: "absolute",
                         bottom: "23%",
                         right:"0px",
-                        zIndex: isMobile ? "-1" : "3 "  
+                        zIndex: isMobile ? "-1" : mediumScreen ? "-1" : "3 ",
+                        overflow:"hidden"  
                     }}
                     />
                 <Box 

@@ -144,7 +144,9 @@ const SavedStoriesPage = () => {
   const [myCharacters, setMyCharacters] = React.useState<any>(myCharacterData);
   const [searchQuery, setSearchQuery] = React.useState<string>("");
   const isMobile = useMediaQuery("(max-width:900px)");
-  // const mediumScreen = useMediaQuery("()")
+  const mediumScreen = useMediaQuery(
+    "(min-width:901px) and (max-width:1501px)"
+  );
   // const [myFilteredStories, setMyFilteredStories] = React.useState<any>(myStories)
 
   const searchChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -191,7 +193,7 @@ const SavedStoriesPage = () => {
               // minWidth: isMobile ? "90%" : "80%",
               maxWidth: "75%",
               position: "relative",
-              m: "70px 0px",
+              m: isMobile ? "70px 0px" : mediumScreen ? "30px 0px" : "70px 0px",
             }}
           >
             <Box
@@ -209,6 +211,7 @@ const SavedStoriesPage = () => {
                 background: `url(${sectionBgImage})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
+                backgroundPosition: "center",
                 p: "70px 0px",
                 borderRadius: "34px",
                 position: "relative",
@@ -257,7 +260,11 @@ const SavedStoriesPage = () => {
                 className="saved-stories-btns"
                 sx={{
                   maxWidth: isMobile ? "90%" : "60%",
-                  margin: isMobile ? "40px auto 0px" : "60px auto 0px",
+                  margin: isMobile
+                    ? "40px auto 0px"
+                    : mediumScreen
+                    ? "30px auto 0px"
+                    : "60px auto 0px",
                 }}
               >
                 <Grid
@@ -309,7 +316,16 @@ const SavedStoriesPage = () => {
                 </Grid>
                 <Divider />
               </Box>
-              <Box sx={{ maxWidth: "80%", m: "50px auto 0px" }}>
+              <Box
+                sx={{
+                  maxWidth: "80%",
+                  m: isMobile
+                    ? "50px auto 0px"
+                    : mediumScreen
+                    ? "30px auto 0px"
+                    : "50px auto 0px",
+                }}
+              >
                 {isStoriesActive ? (
                   <MyStories myStories={myStories} />
                 ) : (
