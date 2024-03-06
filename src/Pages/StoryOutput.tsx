@@ -9,7 +9,6 @@ const StoryOutput = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
   isMobile ? console.log("first") : console.log("2");
   const enterFullScreen = useFullScreenHandle();
-  console.log("story-output-page");
   return (
     <Layout>
       <NavBar background={bgImage}>
@@ -47,7 +46,7 @@ const StoryOutput = () => {
                           : "Enter Full Screen"
                       }
                   </Button>
-                  <StoryOutputMain />
+                  <StoryOutputMain isFullScreen={enterFullScreen.active ? true : false} />
                 </Box>
               </FullScreen>
             </Box>

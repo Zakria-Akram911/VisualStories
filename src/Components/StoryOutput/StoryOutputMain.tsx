@@ -1,6 +1,6 @@
 import { Box, Button, Grid, useMediaQuery, Typography } from "@mui/material";
 import imageUrl1 from "../../assets/story-output-image1.png";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import HTMLFlipBook from "react-pageflip";
 import "../../utility/books.css";
 // import { FullScreen, useFullScreenHandle } from "react-full-screen";
@@ -71,8 +71,25 @@ const StoryOutputMain = (props: any) => {
   );
   const [disableNext, setDisableNext] = React.useState<number>(0);
   const [disablePrev, setDisablePrev] = React.useState<number>(0);
+  const [screenHeight, setScreenHeight] = React.useState(window.innerHeight);
   const bookRef = useRef<any>();
   // const enterFullScreen = useFullScreenHandle();
+    
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenHeight(window.innerHeight);
+    };
+    console.log(screenHeight)
+    console.log(props.isFullScreen)
+
+    // Add event listener to update height on resize
+    window.addEventListener('resize', handleResize);
+
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [props.isFullScreen]);
 
   //Function to flip to next page
   const flipNext = () => {
@@ -237,7 +254,7 @@ const StoryOutputMain = (props: any) => {
             mobileScrollSupport={true}
             usePortrait={true}
             flippingTime={isMobile ? 1500 : 1000}
-            disableFlipByClick={false}
+            disableFlipByClick={isMobile ? true :false}
             useMouseEvents={true}
           >
             {pages.map((item: IPage) => (
