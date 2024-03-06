@@ -7,7 +7,6 @@ import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const StoryOutput = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
-  isMobile ? console.log("first") : console.log("2");
   const enterFullScreen = useFullScreenHandle();
   return (
     <Layout>
