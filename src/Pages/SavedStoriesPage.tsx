@@ -71,6 +71,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     "@media (max-width: 900px)": {
       padding: "10px 40px", 
     },
+    "@media ((min-width: 901px) and (max-width:1501px)) ": {
+      padding: "12px 40px", 
+    },
   },
 }));
 
@@ -196,7 +199,7 @@ const SavedStoriesPage = () => {
               minWidth: isMobile ? "90%" : "75%",
               maxWidth: "75%",
               position: "relative",
-              m: isMobile ? "50px 0px" : mediumScreen ? "30px 0px" : "70px 0px",
+              m: isMobile ? "50px 0px" : mediumScreen ? "0px 0px" : "70px 0px",
             }}
           >
             <Box
@@ -204,9 +207,10 @@ const SavedStoriesPage = () => {
               src={greenLeaf}
               sx={{
                 position: "absolute",
-                top: "-110px",
-                left: "-140px",
+                top: mediumScreen ? "-70px" : "-110px",
+                left: mediumScreen ? "-100px" : "-140px",
                 zIndex: "1",
+                width: mediumScreen? "150px" : "inherit",
               }}
             />
             <Box
@@ -215,7 +219,7 @@ const SavedStoriesPage = () => {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                p: "70px 0px",
+                p: mediumScreen ? "40px 0px" : "70px 0px",
                 borderRadius: "34px",
                 position: "relative",
               }}
@@ -248,12 +252,12 @@ const SavedStoriesPage = () => {
                       "var(--button-gold, linear-gradient(179deg, #E0B65D 25.23%, #F0D191 95.58%, rgba(255, 255, 255, 0.00) 183.3%))",
                     border: "3px solid #A67334",
                     color: "#47371F",
-                    padding: isMobile ? "10px 20px" : "6px 40px",
+                    padding: isMobile ? "10px 20px" : mediumScreen ? "6px 20px" : "6px 40px",
                     position: "absolute",
                     right: "0",
                     top: "0",
                     borderRadius: "9px",
-                    fontSize: isMobile ? "12px" : "20px",
+                    fontSize: isMobile ? "12px" : mediumScreen ? "16px" : "20px",
                   }}
                 >
                   search
@@ -281,7 +285,7 @@ const SavedStoriesPage = () => {
                       sx={{
                         textTransform: "capitalize",
                         p: isMobile ? "3px 20px" : "3px 50px",
-                        fontSize: isMobile ? "16px" : "24px",
+                        fontSize: isMobile ? "16px" : mediumScreen ? "20px" : "24px",
                         borderRadius: "34px",
                         boxShadow: "none",
                         background: isStoriesActive ? "#EFCE8D" : "",
@@ -301,7 +305,7 @@ const SavedStoriesPage = () => {
                       sx={{
                         textTransform: "capitalize",
                         p: isMobile ? "3px 20px" : "3px 50px",
-                        fontSize: isMobile ? "16px" : "24px",
+                        fontSize: isMobile ? "16px" : mediumScreen ? "20px" : "24px",
                         borderRadius: "34px",
                         boxShadow: "none",
                         background: !isStoriesActive ? "#EFCE8D" : "",

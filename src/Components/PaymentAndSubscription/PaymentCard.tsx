@@ -28,12 +28,18 @@ const PaymentCard: React.FC<PaymentCardData> = ({
   buttonText,
 }) => {
   const isMobile = useMediaQuery("(max-width:900px)");
-  const mediumScreen = useMediaQuery("(min-width:901px) and (max-width:1501px)");
+  const mediumScreen = useMediaQuery(
+    "(min-width:901px) and (max-width:1501px)"
+  );
   return (
     <Box>
       <Box
         sx={{
-          p: isMobile ? "80px 30px 50px" : mediumScreen ? "80px 30px 60px" : "100px 40px 60px",
+          p: isMobile
+            ? "80px 30px 50px"
+            : mediumScreen
+            ? "80px 30px 60px"
+            : "100px 40px 60px",
           position: "relative",
         }}
       >
@@ -51,7 +57,10 @@ const PaymentCard: React.FC<PaymentCardData> = ({
               }}
             >
               <Typography
-                sx={{ color: "#452C0E", fontSize: isMobile ? "16px" : mediumScreen ? "20px" : "24px" }}
+                sx={{
+                  color: "#452C0E",
+                  fontSize: isMobile ? "16px" : mediumScreen ? "20px" : "24px",
+                }}
               >
                 Popular
               </Typography>
@@ -62,7 +71,7 @@ const PaymentCard: React.FC<PaymentCardData> = ({
           <Typography
             sx={{
               color: "#4F3310",
-              fontSize: isMobile ? "18px" : mediumScreen ? "28px" : "32px",
+              fontSize: isMobile ? "18px" : mediumScreen ? "24px" : "32px",
               textTransform: "uppercase",
               WebkitTextStroke: "0.5px #4F3310",
               mb: isMobile ? "10px" : mediumScreen ? "15px" : "20px",
@@ -76,7 +85,7 @@ const PaymentCard: React.FC<PaymentCardData> = ({
           <Typography
             sx={{
               color: "#80521A",
-              fontSize: isMobile ? "16px" : mediumScreen ? "20px" : "24px",
+              fontSize: isMobile ? "16px" : mediumScreen ? "18px" : "24px",
               mb: isMobile ? "10px" : mediumScreen ? "15px" : "20px",
             }}
           >
@@ -88,11 +97,21 @@ const PaymentCard: React.FC<PaymentCardData> = ({
           m={isMobile ? "10px 0px" : mediumScreen ? "20px 0px" : "40px 0px"}
           sx={{ textAlign: "center" }}
         >
-          <Box component="img" src={price} />
+          <Box component="img" src={price} sx={{ height: mediumScreen ? "40px": "inherit",  objectFit: "contain"}} />
         </Box>
         <Box
           className="payment-privileges"
-          mb={isPopular ? isMobile ? "30px" : "50px" : isMobile ? "30px" : mediumScreen ? "140px" : "195px"}
+          mb={
+            isPopular
+              ? isMobile
+                ? "30px"
+                : "50px"
+              : isMobile
+              ? "30px"
+              : mediumScreen
+              ? "140px"
+              : "195px"
+          }
         >
           {privileges.map((item: string) => (
             <ListItem>
@@ -105,7 +124,7 @@ const PaymentCard: React.FC<PaymentCardData> = ({
                     fontSize: isMobile
                       ? "16px"
                       : mediumScreen
-                      ? "20px"
+                      ? "18px"
                       : "24px",
                   }}
                 >

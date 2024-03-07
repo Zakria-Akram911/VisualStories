@@ -10,7 +10,9 @@ import CustomizeButton from "../CustomizeButton";
 
 const CreateStoryMain = () => {
   const isMobile = useMediaQuery("(max-width: 900px)");
-  const mediumScreen = useMediaQuery("(min-width: 901px) and (max-width: 1501px)");
+  const mediumScreen = useMediaQuery(
+    "(min-width: 901px) and (max-width: 1501px)"
+  );
   const [isStorylineActive, setIsStorylineActive] =
     React.useState<boolean>(true);
   const [formSubmitted, setFormSubmitted] = React.useState<boolean>(false);
@@ -32,8 +34,8 @@ const CreateStoryMain = () => {
   const handleClick = (e: any) => {
     setFormSubmitted(true);
     console.log(formSubmitted);
-    if(isStorylineActive){
-        navigate("/your-story/1");
+    if (isStorylineActive) {
+      navigate("/your-story/1");
     }
     e.preventDefault();
   };
@@ -45,7 +47,11 @@ const CreateStoryMain = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           borderRadius: "24px",
-          padding: isMobile ? "40px 20px" : mediumScreen ? "40px 100px" : "60px 150px",
+          padding: isMobile
+            ? "40px 20px"
+            : mediumScreen
+            ? "30px 100px"
+            : "60px 150px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -57,7 +63,8 @@ const CreateStoryMain = () => {
             color="#6E4500"
             sx={{
               // lineHeight: isMobile ? "50px" : mediumScreen ? "70px" : "80px",
-              fontSize: isMobile ? "20px" : mediumScreen ? "34px" : "40px",
+              fontSize: isMobile ? "20px" : mediumScreen ? "26px" : "40px",
+              WebkitTextStroke: "0.25px #6E4500",
             }}
           >
             The next step?
@@ -66,7 +73,7 @@ const CreateStoryMain = () => {
             color="#6E4500"
             sx={{
               // lineHeight: isMobile ? "50px" : mediumScreen ? "70px" : "80px",
-              fontSize: isMobile ? "18px" : mediumScreen ? "34px" : "40px",
+              fontSize: isMobile ? "18px" : mediumScreen ? "26px" : "40px",
               WebkitTextStroke: "0.25px #6E4500",
             }}
           >
@@ -76,7 +83,7 @@ const CreateStoryMain = () => {
             color="#6E4500"
             sx={{
               // lineHeight: isMobile ? "50px" : mediumScreen ? "70px" : "80px",
-              fontSize: isMobile ? "14px" : mediumScreen ? "18px" : "20px",
+              fontSize: isMobile ? "14px" : mediumScreen ? "16px" : "20px",
             }}
           >
             Fill the following according to your preference
@@ -109,7 +116,7 @@ const CreateStoryMain = () => {
               component="img"
               src={storylineImage}
               sx={{
-                width: isMobile ? "100px" : mediumScreen ? "200px" : "auto",
+                width: isMobile ? "100px" : mediumScreen ? "180px" : "auto",
               }}
             />
             <Typography
@@ -141,7 +148,7 @@ const CreateStoryMain = () => {
               component="img"
               src={mainCharacterImage}
               sx={{
-                width: isMobile ? "100px" : mediumScreen ? "200px" : "auto",
+                width: isMobile ? "100px" : mediumScreen ? "180px" : "auto",
               }}
             />
             <Typography

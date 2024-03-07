@@ -1,9 +1,14 @@
 import { Box, Button, Grid, useMediaQuery, Typography } from "@mui/material";
 import imageUrl1 from "../../assets/story-output-image1.png";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import HTMLFlipBook from "react-pageflip";
 import "../../utility/books.css";
-// import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackwardIcon from "@mui/icons-material/ArrowBack";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import bgImage from "../../assets/story-output-bg.png";
 
 interface IPage {
   id: number;
@@ -71,25 +76,25 @@ const StoryOutputMain = (props: any) => {
   );
   const [disableNext, setDisableNext] = React.useState<number>(0);
   const [disablePrev, setDisablePrev] = React.useState<number>(0);
-  // const [screenHeight, setScreenHeight] = React.useState(window.innerHeight);
+  const [screenHeight, setScreenHeight] = React.useState(window.innerHeight);
   const bookRef = useRef<any>();
-  // const enterFullScreen = useFullScreenHandle();
-    
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setScreenHeight(window.innerHeight);
-  //   };
-  //   console.log(screenHeight)
-  //   console.log(props.isFullScreen)
+  const enterFullScreen = useFullScreenHandle();
 
-  //   // Add event listener to update height on resize
-  //   window.addEventListener('resize', handleResize);
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenHeight(window.innerHeight);
+    };
+    console.log(screenHeight);
+    console.log(props.isFullScreen);
 
-  //   // Clean up event listener on component unmount
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, [props.isFullScreen]);
+    // Add event listener to update height on resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [props.isFullScreen]);
 
   //Function to flip to next page
   const flipNext = () => {
@@ -105,12 +110,13 @@ const StoryOutputMain = (props: any) => {
   };
 
   //Function to flip to previous page
-  const flipPrev = async () => {
-    await bookRef.current.pageFlip().flipPrev();
+  const flipPrev = () => {
+    bookRef.current.pageFlip().flipPrev();
     //setTimeout serves the same purpose as serves in flipNext
     setTimeout(() => {
       setDisablePrev(bookRef.current.pageFlip().getCurrentPageIndex());
       setDisableNext(bookRef.current.pageFlip().getCurrentPageIndex());
+      // console.log(disablePrev)
     }, 1000);
   };
 
@@ -231,90 +237,190 @@ const StoryOutputMain = (props: any) => {
           </Grid>
         </Grid>
       </Box>
-      <Box
-        sx={{
-          maxWidth: "1050px",
-          m: "0 auto",
-          // background: `url(${bookImage})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <Box className="story-all-content">
-          <HTMLFlipBook
-            {...props}
-            ref={bookRef}
-            width={isMobile ? 350 : 500}
-            height={isMobile ? 550 : 733}
-            size="stretch"
-            minWidth={300}
-            maxWidth={1000}
-            minHeight={400}
-            maxHeight={1533}
-            mobileScrollSupport={true}
-            usePortrait={true}
-            flippingTime={isMobile ? 1500 : 1000}
-            disableFlipByClick={isMobile ? true : false}
-            useMouseEvents={true}
+      <FullScreen handle={enterFullScreen}>
+        <Box
+          sx={{
+            height: enterFullScreen.active ? "100vh" : "inherit",
+            background: enterFullScreen.active ? `url(${bgImage})` : "inherit",
+            paddingTop: enterFullScreen.active ? "20px" : "inherit"
+          }}
+        >
+          <Box
+            className="mobile-next-and-prev-btns"
+            sx={{ display: isMobile ? "inherit" : "none" }}
           >
-            {pages.map((item: IPage) => (
-              <div className="page" onClick={onPageClickHandle}>
-                {item.pageNumber % 2 === 1 ? (
-                  <div className="page-content">
-                    <p
-                      className="title"
-                      style={{
-                        fontSize: isMobile
-                          ? "24px"
-                          : mediumScreen
-                          ? "30px"
-                          : "40px",
-                        color: "#936037",
-                      }}
-                    >
-                      {item.title}
-                    </p>
-                    <img
-                      src={item.imgUrl}
-                      alt="cover image"
-                      className="page-image"
-                    />
-                    <p style={{ color: "#936037" }}>{item.pageContent}</p>
-                    <p style={{ color: "#936037", textAlign: "left" }}>
-                      {item.pageNumber + " / "+ pages.length}
-                    </p>
+            <Grid
+              container
+              sx={{
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "20px",
+              }}
+            >
+              <Grid item>
+                <ArrowBackwardIcon
+                  sx={{
+                    color: "white",
+                    fontSize: "26px",
+                    fontWeight: "900",
+                  }}
+                  onClick={flipPrev}
+                />
+              </Grid>
+              <Grid item>
+                <ArrowForwardIcon
+                  sx={{
+                    color: "white",
+                    fontSize: "26px",
+                    fontWeight: "900",
+                  }}
+                  onClick={flipNext}
+                />
+              </Grid>
+            </Grid>
+          </Box>
+          <Box
+            sx={{
+              maxWidth: "1050px",
+              m: "0 auto",
+              // background: `url(${bookImage})`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <Box className="story-all-content">
+              <HTMLFlipBook
+                {...props}
+                ref={bookRef}
+                width={isMobile ? 350 : 500}
+                height={isMobile ? 650 : 733}
+                size="stretch"
+                minWidth={300}
+                maxWidth={1000}
+                minHeight={400}
+                maxHeight={1533}
+                mobileScrollSupport={true}
+                usePortrait={true}
+                flippingTime={isMobile ? 1500 : 1000}
+                disableFlipByClick={false}
+                useMouseEvents={isMobile ? false : true}
+              >
+                {pages.map((item: IPage) => (
+                  <div
+                    className="page"
+                    onClick={onPageClickHandle}
+                    style={{ position: "relative" }}
+                  >
+                    {item.pageNumber % 2 === 1 ? (
+                      <div className="page-content">
+                        <p
+                          className="title"
+                          style={{
+                            fontSize: isMobile
+                              ? "24px"
+                              : mediumScreen
+                              ? "30px"
+                              : "40px",
+                            color: "#936037",
+                          }}
+                        >
+                          {item.title}
+                        </p>
+                        <img
+                          src={item.imgUrl}
+                          alt="cover image"
+                          className="page-image"
+                        />
+                        <p style={{ color: "#936037" }}>{item.pageContent}</p>
+                        <p
+                          style={{
+                            color: "#936037",
+                            textAlign: "left",
+                            position: isMobile ? "absolute" : "relative",
+                            bottom: "0",
+                          }}
+                        >
+                          {item.pageNumber + " / " + pages.length}
+                        </p>
+                        <p
+                          style={{
+                            display: isMobile ? "inherit" : "none",
+                            position: isMobile ? "absolute" : "relative",
+                            bottom: "-10px",
+                            right: "0",
+                          }}
+                        >
+                          {enterFullScreen.active ? (
+                            <FullscreenExitIcon
+                              sx={{ color: "#936037", fontSize: "40px" }}
+                              onClick={enterFullScreen.exit}
+                            />
+                          ) : (
+                            <FullscreenIcon
+                              sx={{ color: "#936037", fontSize: "40px" }}
+                              onClick={enterFullScreen.enter}
+                            />
+                          )}
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="page-content">
+                        <p
+                          className="title"
+                          style={{
+                            fontSize: isMobile
+                              ? "24px"
+                              : mediumScreen
+                              ? "30px"
+                              : "40px",
+                            color: "#936037",
+                            visibility: isMobile ? "inherit" : "hidden",
+                          }}
+                        >
+                          {item.title}
+                        </p>
+                        <p style={{ color: "#936037" }}>{item.pageContent}</p>
+                        <img
+                          src={item.imgUrl}
+                          alt="cover image"
+                          className="page-image"
+                        />
+                        <p
+                          style={{
+                            color: "#936037",
+                            textAlign: "right",
+                            position: isMobile ? "absolute" : "relative",
+                            bottom: "0",
+                          }}
+                        >
+                          {item.pageNumber + " / " + pages.length}
+                        </p>
+                        <p
+                          style={{
+                            display: isMobile ? "inherit" : "none",
+                            position: isMobile ? "absolute" : "relative",
+                            bottom: "-10px",
+                            right: "0",
+                          }}
+                        >
+                          {enterFullScreen.active ? (
+                            <FullscreenExitIcon
+                              sx={{ color: "#936037", fontSize: "40px" }}
+                              onClick={enterFullScreen.exit}
+                            />
+                          ) : (
+                            <FullscreenIcon
+                              sx={{ color: "#936037", fontSize: "40px" }}
+                              onClick={enterFullScreen.enter}
+                            />
+                          )}
+                        </p>
+                      </div>
+                    )}
                   </div>
-                ) : (
-                  <div className="page-content">
-                    <p
-                      className="title"
-                      style={{
-                        fontSize: isMobile
-                          ? "24px"
-                          : mediumScreen
-                          ? "30px"
-                          : "40px",
-                        color: "#936037",
-                        visibility: isMobile ? "inherit" : "hidden",
-                      }}
-                    >
-                      {item.title}
-                    </p>
-                    <p style={{ color: "#936037" }}>{item.pageContent}</p>
-                    <img
-                      src={item.imgUrl}
-                      alt="cover image"
-                      className="page-image"
-                    />
-                    <p style={{ color: "#936037", textAlign: "right" }}>
-                      {item.pageNumber + " / "+ pages.length}
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </HTMLFlipBook>
-          {/* <Box>
+                ))}
+              </HTMLFlipBook>
+              {/* <Box>
             <Typography
               sx={{
                 fontSize: isMobile ? "16px" : mediumScreen ? "18px" : "20px",
@@ -326,8 +432,10 @@ const StoryOutputMain = (props: any) => {
               Total Number of Pages: {bookRef.current.pageFlip().getPageCount()}
             </Typography>
           </Box> */}
+            </Box>
+          </Box>
         </Box>
-      </Box>
+      </FullScreen>
     </Box>
   );
 };

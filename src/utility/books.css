@@ -65,13 +65,13 @@
     .stf__parent{
       /* min-height: 100vh !important; */
       /* height: 100vh !important; */
-      width: 97vw !important;
+      width: 95vw !important;
     }
 
     .page.stf__item.--soft.--simple.--right{
-      width:97vw !important;
+      width:95vw !important;
       /* height: 100vh !important; */
-      /* left: 0 !important; */
+      /* left: 0px !important; */
       /* margin: 0; */
       /* top: 0 !important ; */
     }

@@ -11,7 +11,7 @@ const StoryOutput = () => {
   return (
     <Layout>
       <NavBar background={bgImage}>
-        {isMobile ? (
+        {/* {isMobile ? (
           <>
             <Box>
               <FullScreen handle={enterFullScreen}>
@@ -54,7 +54,10 @@ const StoryOutput = () => {
           <Box sx={{}}>
             <StoryOutputMain />
           </Box>
-        )}
+        )} */}
+        <Box sx={{marginTop:isMobile ? "-30px" : "inherit"}}>
+            <StoryOutputMain />
+          </Box>
       </NavBar>
     </Layout>
   );

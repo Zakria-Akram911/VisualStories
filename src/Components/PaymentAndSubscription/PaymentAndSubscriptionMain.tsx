@@ -64,7 +64,7 @@ const PaymentAndSubscriptionMain = () => {
         <Box className="payment-heading" position="relative">
           <Typography
             sx={{
-              fontSize: isMobile ? "20px" : mediumScreen ? "34px" : "40px",
+              fontSize: isMobile ? "20px" : mediumScreen ? "26px" : "40px",
               color: "white",
             }}
           >

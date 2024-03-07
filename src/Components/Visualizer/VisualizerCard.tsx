@@ -3,7 +3,7 @@ import cardBottomImage from "../../assets/card-design.png";
 
 const VisualizerCard = ({ cardImage, text }: any) => {
   const isMobile = useMediaQuery("(max-width:900px)");
-  const isMediumScreen = useMediaQuery(
+  const mediumScreen = useMediaQuery(
     "(min-width:901px) and (max-width:1501px)"
   );
   return (
@@ -18,14 +18,17 @@ const VisualizerCard = ({ cardImage, text }: any) => {
         p: "40px 0px",
       }}
     >
-      <Box className="cardImage">
+      <Box
+        className="cardImage"
+        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      >
         <Box
           component="img"
           src={cardImage}
-        //   sx={{
-        //     maxWidth: isMobile ? "70%" : "100%",
-        //     m: isMobile ? "0 auto" : "inherit",
-        //   }}
+          sx={{
+            maxWidth: isMobile ? "70%" : mediumScreen ? "70%" : "100%",
+            m: mediumScreen ? "0 auto" : "inherit",
+          }}
         />
       </Box>
       <Box
@@ -34,21 +37,21 @@ const VisualizerCard = ({ cardImage, text }: any) => {
           display: "flex",
           justifyContent: "center",
           m: "25px 0px",
-          maxWidth: "60%",
+          maxWidth: isMobile ? "80%":mediumScreen? "80%" : "60%",
         }}
       >
         <Typography
           sx={{
             color: "#fff",
             textAlign: "center",
-            fontSize: isMobile ? "20px" : isMediumScreen ? "20px" : "24px",
+            fontSize: isMobile ? "14px" : mediumScreen ? "16px" : "24px",
           }}
         >
           {text}
         </Typography>
       </Box>
-      <Box>
-        <Box component="img" src={cardBottomImage} />
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}> 
+        <Box component="img" src={cardBottomImage} sx={{maxWidth: isMobile ? "70%" : mediumScreen ? "70%" : "100%",}} />
       </Box>
     </Box>
   );

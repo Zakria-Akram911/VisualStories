@@ -27,7 +27,7 @@ const VisualizerMain = () => {
         sx={{
           color: "#fff",
           fontStyle: "italic",
-          fontSize: isMobile ? "25px" : isMediumScreen ? "30px" : "40px",
+          fontSize: isMobile ? "20px" : isMediumScreen ? "24px" : "40px",
           fontWeight: "500",
         }}
       >
@@ -46,7 +46,7 @@ const VisualizerMain = () => {
       >
         <Box
           sx={{
-            maxWidth: isMobile ? "90%" : isMediumScreen ? "30%" : "28%",
+            maxWidth: isMobile ? "80%" : isMediumScreen ? "25%" : "28%",
             cursor: "pointer",
           }}
           onClick={newClicked}
@@ -58,7 +58,7 @@ const VisualizerMain = () => {
         </Box>
         <Box
           sx={{
-            maxWidth: isMobile ? "90%" : isMediumScreen ? "30%" : "28%",
+            maxWidth: isMobile ? "80%" : isMediumScreen ? "25%" : "28%",
             cursor: "pointer",
           }}
           onClick={savedClicked}
