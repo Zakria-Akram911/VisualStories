@@ -2,12 +2,12 @@ import NavBar from "../Components/NavBar";
 import Layout from "./LayoutPages";
 import bgImage from "../assets/story-output-bg.png";
 import StoryOutputMain from "../Components/StoryOutput/StoryOutputMain";
-import { Box, Button, useMediaQuery } from "@mui/material";
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import { Box, useMediaQuery } from "@mui/material";
+// import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const StoryOutput = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
-  const enterFullScreen = useFullScreenHandle();
+  // const enterFullScreen = useFullScreenHandle();
   return (
     <Layout>
       <NavBar background={bgImage}>
