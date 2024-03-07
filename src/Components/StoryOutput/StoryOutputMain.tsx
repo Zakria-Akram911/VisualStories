@@ -1,6 +1,6 @@
 import { Box, Button, Grid, useMediaQuery, Typography } from "@mui/material";
 import imageUrl1 from "../../assets/story-output-image1.png";
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import HTMLFlipBook from "react-pageflip";
 import "../../utility/books.css";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -76,25 +76,25 @@ const StoryOutputMain = (props: any) => {
   );
   const [disableNext, setDisableNext] = React.useState<number>(0);
   const [disablePrev, setDisablePrev] = React.useState<number>(0);
-  const [screenHeight, setScreenHeight] = React.useState(window.innerHeight);
+  // const [screenHeight, setScreenHeight] = React.useState(window.innerHeight);
   const bookRef = useRef<any>();
   const enterFullScreen = useFullScreenHandle();
 
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenHeight(window.innerHeight);
-    };
-    console.log(screenHeight);
-    console.log(props.isFullScreen);
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setScreenHeight(window.innerHeight);
+  //   };
+  //   console.log(screenHeight);
+  //   console.log(props.isFullScreen);
 
-    // Add event listener to update height on resize
-    window.addEventListener("resize", handleResize);
+  //   // Add event listener to update height on resize
+  //   window.addEventListener("resize", handleResize);
 
-    // Clean up event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [props.isFullScreen]);
+  //   // Clean up event listener on component unmount
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, [props.isFullScreen]);
 
   //Function to flip to next page
   const flipNext = () => {
@@ -129,11 +129,6 @@ const StoryOutputMain = (props: any) => {
 
   return (
     <Box className="story-output-main">
-      {/* <button onClick={enterFullScreen.enter}>Enter Full screen</button>
-      <FullScreen handle={enterFullScreen} >
-        
-        <button onClick={enterFullScreen.exit}>exit</button>
-      </FullScreen> */}
       <Box
         className="story-output-btns"
         sx={{ display: isMobile ? "none" : "inherit" }}
@@ -260,7 +255,7 @@ const StoryOutputMain = (props: any) => {
               <Grid item>
                 <ArrowBackwardIcon
                   sx={{
-                    color: "white",
+                    color: "#E0B65D",
                     fontSize: "26px",
                     fontWeight: "900",
                   }}
@@ -270,7 +265,7 @@ const StoryOutputMain = (props: any) => {
               <Grid item>
                 <ArrowForwardIcon
                   sx={{
-                    color: "white",
+                    color: "#E0B65D",
                     fontSize: "26px",
                     fontWeight: "900",
                   }}
